@@ -1,7 +1,4 @@
-# shellcode-injector
-While researching remote code execution, I stumbled across information that identified the massive security hole within one of Microsoft's Windows API functions, 'SetWindowsHookEx'. As documented, this function installs an application-defined hook procedure into a hook chain. At first glance, this is of no significance. However, as per analysis by [Waryas](https://github.com/waryas/), a series of tests will confirm that the hook procedure does not need to belong to the module passed to the function. This has serious implications and enables remote procedure calls from any process via thread hijacking, as showcased by this project.
-# Note
-In the spirit of stealth, I am using direct syscalls rather than WinAPI / Native API calls to stay under the radar of inline hooks.
-# Planned
-* Other thread hijacking methods
-* Using this method (in addition to the methods I add) for DLL injections
+# manual-map-injector
+This is a continuation of my [previous project](https://github.com/thetuh/shellcode-injector) that involves injecting a DLL by manual-mapping it. However, the employed procedure requires invoking LoadLibrary to locate/administer any of its missing dependencies. Loading a DLL this way can be easily detected by hooking the function and/or its native equivalent. As such, it is trivial to negate if injection is deemed 'foreign' by performing a return address integrity check against a list of valid modules or checking if the call was never dispatched by the process itself. This updated design evades these security measures through eliminating the need of any LoadLibrary call by recursively manual-mapping any absent dependency not already loaded.
+# Resources
+[previous project](https://github.com/DarthTon/Blackbone)
