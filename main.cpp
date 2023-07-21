@@ -18,8 +18,8 @@
 #include "utilities.h"
 #include "mapper.h"
 
-#define DLL_PATH "E:\\noir\\Release\\example_dll.dll"
-#define PROCESS "RobloxPlayerBeta.exe"
+#define DLL_PATH "YourDll.dll"
+#define PROCESS "TargetProgram.exe"
 
 extern "C" void* internal_cleancall_wow64_gate{ nullptr };
 
